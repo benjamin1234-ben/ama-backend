@@ -6,8 +6,6 @@ import Link from "next/link";
 import Metamask from "../components/Metamask";
 
 import useSWR from 'swr'
-import PersonComponent from '../components/Person'
-import { Person } from '../interfaces'
 
 
 
