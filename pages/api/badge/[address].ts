@@ -28,28 +28,28 @@ export default async function badgeHandler(
   const contract = new Contract("0x47856ec2f682E534Ce4184FaA1655976F3310069", abi, signer);
 
   const nEscrow = await contract.nEscrow();
-  console.log(nEscrow.toNumber());
+  // console.log(nEscrow.toNumber());
 
   const Ecrows = async (address:string | string[]) => {
-    console.log(address);
+    // console.log(address);
     let _funds = 0;
     for(let i = 0; i < nEscrow; i++) {
       const sponsor = await contract.escrowSponsor(i);
-      console.log(sponsor);
+      // console.log(sponsor);
       if(sponsor == address) {
         const escrow = await contract.escrows(i + 1);
         const { funds = 0 } = { ...(escrow) };
-        console.log(funds.toNumber());
+        // console.log(funds.toNumber());
         _funds += funds.toNumber();
       }
     }
-    console.log(_funds);
+    // console.log(_funds);
     return _funds;
   }
 
   const funds = await Ecrows(address);
   const offset = CO2Offset(funds);
-  console.log(offset);
+  // console.log(offset);
 
   return funds 
     ? res.status(200).json({response : `${offset}`})
